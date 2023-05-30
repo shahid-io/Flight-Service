@@ -6,9 +6,10 @@ const airplaneRoutes = require("./airplane-routes");
 
 const router = express.Router();
 
+//  /airplanes
 router.use("/airplanes", airplaneRoutes);
 
-//example
+//  /info
 router.get("/info", InfoController.info);
 
 module.exports = router;

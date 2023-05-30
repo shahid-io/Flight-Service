@@ -1,17 +1,40 @@
-`create table using sequelize CLI`
+`create database`
 
-> npx sequelize model:generate --name Airplane --attributes modelNumber:string,capacity:integer
+```
+>npx sequelize db:create
+```
 
-`now migrate the model`
+### Database tables managed by model
 
+`create database model. In other words create table using sequelize CLI`
+
+```
+>npx sequelize model:generate --name Airplane --attributes modelNumber:string,capacity:integer
+```
+
+<p>after this command the sequelize created two files "airplane.js" and "------create-airplane.js"
+It doesn't create table in your database.
+</p>
+
+### now migrate the model
+
+<p>This Migration will create the database table 
+there are two functions available in model up() and down()
+up() for create table
+down() destroy table</p>
+
+```
 > npx sequelize db:migrate
+```
 
-`revert from migration`
+### revert from migration
 
+```
 > npx sequelize db:migrate:undo
+```
 
-`revert all migration`
-
+### revert all migration
+```
 > npx sequelize db:migrate:all
 
 ```

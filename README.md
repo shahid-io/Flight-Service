@@ -1,4 +1,4 @@
-`create database`
+# create database
 
 ```
 >npx sequelize db:create

@@ -45,7 +45,26 @@ async function findAllAirplanes(req, res) {
   }
 }
 
+async function findbyIdAirplane(req, res) {
+  try {
+    const airplane = await AirplaneService.getAirplaneById(req.params.id);
+    return res.status(StatusCodes.OK).json({
+      success: true,
+      message: `Successfully fetched airplanes by Id : ${req.params.id}`,
+      data: airplane,
+      error: {},
+    });
+  } catch (error) {
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+      success: false,
+      message: "Something went wrong while fetching airplane by Id.",
+      data: {},
+      error: error,
+    });
+  }
+}
 module.exports = {
   createAirplane,
   findAllAirplanes,
+  findbyIdAirplane,
 };

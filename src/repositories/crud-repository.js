@@ -1,8 +1,10 @@
 const { Logger } = require("../config");
+
 class CrudRepository {
   constructor(model) {
     this.model = model;
   }
+
   async create(data) {
     try {
       const response = await this.model.create(data);
@@ -12,6 +14,7 @@ class CrudRepository {
       throw error;
     }
   }
+
   async destroy(data) {
     try {
       const response = await this.model.destroy({
@@ -25,15 +28,23 @@ class CrudRepository {
       throw error;
     }
   }
-  async get(data) {
+
+  /**
+   *
+   * @param {primary key Id} data
+   * @returns
+   */
+  async get(id) {
     try {
-      const response = await this.model.findByPk(data);
+      const response = await this.model.findByPk(id);
       return response;
     } catch (error) {
       Logger.error("Something went wrong from CRUD Repo : get");
       throw error;
     }
   }
+
+
   async getAll() {
     try {
       const response = await this.model.findAll();
@@ -43,6 +54,7 @@ class CrudRepository {
       throw error;
     }
   }
+
   async update(id, data) {
     //data is object {col: value}
     try {

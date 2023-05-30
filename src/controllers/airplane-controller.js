@@ -1,4 +1,3 @@
-
 const { AirplaneService } = require("../services");
 const { StatusCodes } = require("http-status-codes");
 /**
@@ -27,4 +26,26 @@ async function createAirplane(req, res) {
   }
 }
 
-module.exports = { createAirplane };
+async function findAllAirplanes(req, res) {
+  try {
+    const airplanes = await AirplaneService.getAirplanes();
+    return res.status(StatusCodes.OK).json({
+      success: true,
+      message: "Successfully fetched all airplanes.",
+      data: airplanes,
+      error: {},
+    });
+  } catch (error) {
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+      success: false,
+      message: "Something went wrong while fetching airplanes.",
+      data: {},
+      error: error,
+    });
+  }
+}
+
+module.exports = {
+  createAirplane,
+  findAllAirplanes,
+};

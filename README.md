@@ -1,4 +1,4 @@
-# create database
+### create database
 
 ```
 >npx sequelize db:create
@@ -6,7 +6,7 @@
 
 ### Database tables managed by model
 
-`create database model. In other words create table using sequelize CLI`
+<p>create database model. In other words create table using sequelize CLI</p>
 
 ```
 >npx sequelize model:generate --name Airplane --attributes modelNumber:string,capacity:integer
@@ -36,12 +36,15 @@ down() destroy table</p>
 ### revert all migration
 ```
 > npx sequelize db:migrate:all
-
 ```
+<h5>
 Note: while db:migrate:undo the down() function will apply
     and while db:migrate the up() function will apply
-```
-
-`constrains`
+</h5>
+### Constraints
+<p>
 There two type of constraints we can give one at database level
 and another at javascript level(any language being used in backend)
+If applying constraints in model - airplane.js file it will be javascript level constraint.
+And if applying constraints in migration - ----create-airplane.js it will be database level constraint.
+</p>

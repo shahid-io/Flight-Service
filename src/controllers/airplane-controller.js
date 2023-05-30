@@ -63,8 +63,56 @@ async function findbyIdAirplane(req, res) {
     });
   }
 }
+
+async function destroyAirplane(req, res) {
+  try {
+    const airplane = await AirplaneService.destroyAirplaneById(req.params.id);
+    return res.status(StatusCodes.OK).json({
+      success: true,
+      message: `Successfully DELETED airplane by Id : ${req.params.id}`,
+      data: airplane,
+      error: {},
+    });
+  } catch (error) {
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+      success: false,
+      message: "Something went wrong while deleting airplane by Id.",
+      data: {},
+      error: error,
+    });
+  }
+}
+
+async function updateAirplane(req, res) {
+  try {
+    const airplane = await AirplaneService.updateAirplane(
+     req.body,
+      { where: { id: id } }
+    );
+
+    if (airplane[0] === 0) {
+      throw new Error("Not found");
+    }
+
+    return res.status(StatusCodes.OK).json({
+      success: true,
+      message: `Successfully UPDATED airplane by Id : ${req.params.id}`,
+      data: airplane,
+      error: {},
+    });
+  } catch (error) {
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+      success: false,
+      message: `Failed to update airplane by Id: ${req.params.id}`,
+      data: {},
+      error: error.message || "An error occurred during the update operation.",
+    });
+  }
+}
 module.exports = {
   createAirplane,
   findAllAirplanes,
   findbyIdAirplane,
+  destroyAirplane,
+  updateAirplane,
 };

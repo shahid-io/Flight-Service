@@ -25,7 +25,16 @@ async function getAirplanes() {
     const airplanes = await airplaneRepository.getAll();
     return airplanes;
   } catch (error) {
-    throw error;
+    if (error.statusCode == StatusCodes.NOT_FOUND) {
+      throw new AppError(
+        "The requested airplanes are not present",
+        error.StatusCodes
+      );
+    }
+    throw new AppError(
+      "Cannot fetch data of all the airplanes",
+      StatusCodes.INTERNAL_SERVER_ERROR
+    );
   }
 }
 
@@ -34,7 +43,16 @@ async function getAirplaneById(id) {
     const airplane = await airplaneRepository.get(id);
     return airplane;
   } catch (error) {
-    throw error;
+    if (error.statusCode == StatusCodes.NOT_FOUND) {
+      throw new AppError(
+        `The airplane you requested with Id : ${id}  isn't present`,
+        error.StatusCodes
+      );
+    }
+    throw new AppError(
+      "Cannot fetch data of all the airplanes",
+      StatusCodes.INTERNAL_SERVER_ERROR
+    );
   }
 }
 
@@ -43,7 +61,16 @@ async function destroyAirplaneById(id) {
     const airplane = await airplaneRepository.destroy(id);
     return airplane;
   } catch (error) {
-    throw error;
+    if (error.statusCode == StatusCodes.NOT_FOUND) {
+      throw new AppError(
+        "The airplane you requested to delete isn't present",
+        error.StatusCodes
+      );
+    }
+    throw new AppError(
+      "Cannot fetch data of all the airplanes",
+      StatusCodes.INTERNAL_SERVER_ERROR
+    );
   }
 }
 
@@ -52,7 +79,16 @@ async function updateAirplane(id, data) {
     const airplane = await airplaneRepository.update(id, data);
     return airplane;
   } catch (error) {
-    throw error;
+    if (error.statusCode == StatusCodes.NOT_FOUND) {
+      throw new AppError(
+        "The airplane you requested to update isn't present",
+        error.StatusCodes
+      );
+    }
+    throw new AppError(
+      "Cannot fetch data of all the airplanes",
+      StatusCodes.INTERNAL_SERVER_ERROR
+    );
   }
 }
 

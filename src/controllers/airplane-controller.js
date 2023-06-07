@@ -13,6 +13,7 @@ async function createAirplane(req, res) {
     });
     SuccessResponse.data = airplane;
     return res.status(StatusCodes.CREATED).json(SuccessResponse);
+
     /*
     return res.status(StatusCodes.CREATED).json({
       success: true,
@@ -65,7 +66,7 @@ async function findbyIdAirplane(req, res) {
   } catch (error) {
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
       success: false,
-      message: "Something went wrong while fetching airplane by Id.",
+      message: `Something went wrong while fetching airplane by Id : ${req.params.id}`,
       data: {},
       error: error,
     });

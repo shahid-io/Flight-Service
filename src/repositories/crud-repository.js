@@ -72,9 +72,7 @@ class CrudRepository {
     //data is object {col: value}
     try {
       const response = await this.model.update(data, {
-        where: {
-          id: id,
-        },
+        where: { id: id },
       });
       return response;
     } catch (error) {
@@ -82,6 +80,13 @@ class CrudRepository {
       throw error;
     }
   }
+
+  /**
+   * async update(data, id) {
+     const response = await this.model.update(data, { where: { id: id } });
+     return response;
+    }
+   */
 }
 
 module.exports = { CrudRepository };

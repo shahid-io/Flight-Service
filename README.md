@@ -50,7 +50,7 @@ If applying constraints in model - `airplane.js` file it will be javascript leve
 And if applying constraints in migration - `----create-airplane.js` it will be database level constraint.
 
 # Create City Model and Migrate
-
+In model the city-name will be unique and the airport can be more than one in one city.
 ```
 npx sequelize model:generate --name City --attributes name:string
 

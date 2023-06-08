@@ -27,7 +27,7 @@ const createCity = async (req, res) => {
 async function findAllCities(req, res) {
   try {
     const cities = await CityService.getCity();
-    SuccessResponse.data = city;
+    SuccessResponse.data = cities;
     return res.status(StatusCodes.OK).json(SuccessResponse);
   } catch (error) {
     ErrorResponse.error = error;

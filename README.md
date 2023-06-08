@@ -67,14 +67,22 @@ npx sequelize model:generate --name Airport --attributes name:string,code:string
 npx sequelize db:migrate
 ```
 
-# Create new migration to add association 
-Note : We dont need another model for because we're already adding F key constraints airport table. 
+# Create new migration to add association
+
+Note : We dont need another model for because we're already adding F key constraints airport table.
+
 ```
 npx sequelize migration:generate --name updated-city-airport-association
 ```
-After adding up code for Key Constraints 
+
+After adding up code for Key Constraints
 
 ```
 npx sequelize db:migrate
 ```
 
+To Undo the migration
+
+```
+npx sequelize db:migrate:undo
+```

@@ -5,7 +5,7 @@ const { SuccessResponse, ErrorResponse } = require("../utils/common");
 /**
  *
  * POST : /cities
- * req-body : { name : London }
+ * req-body : { "name" : "London" }
  */
 const createCity = async (req, res) => {
   try {
@@ -20,6 +20,10 @@ const createCity = async (req, res) => {
   }
 };
 
+/**
+ * GET : /cities
+ * req-body : {}
+ */
 async function findAllCities(req, res) {
   try {
     const cities = await CityService.getCity();
@@ -31,6 +35,12 @@ async function findAllCities(req, res) {
   }
 }
 
+/**
+ *
+ * GET : /cities/:id
+ * req-body : { }
+ * req-params : { id }
+ */
 async function findbyIdCity(req, res) {
   try {
     const city = await CityService.getCityById(req.params.id);
@@ -42,6 +52,11 @@ async function findbyIdCity(req, res) {
   }
 }
 
+/**
+ * DELETE : /cities/:id
+ * req-body : {}
+ * req-params : { id }
+ */
 async function destroyCity(req, res) {
   try {
     const city = await CityService.destroyCityById(req.params.id);
@@ -53,14 +68,19 @@ async function destroyCity(req, res) {
   }
 }
 
+/**
+ * PATCH : /cities/:id
+ * req-body : {}
+ * req-params : { id }
+ */
 async function updateCity(req, res) {
   try {
     const city = await CityService.updateCity(req.params.id, req.body);
     console.log("-------------", city);
     /*
-    if (city[0] === 0) {
-      throw new Error("Not found");
-    }
+      if (city[0] === 0) {
+        throw new Error("Not found");
+      }
     */
     return res.status(StatusCodes.OK).json({
       success: true,

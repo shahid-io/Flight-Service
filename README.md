@@ -86,3 +86,53 @@ To Undo the migration
 ```
 npx sequelize db:migrate:undo
 ```
+
+To see whether Fk applied or not.
+
+```
+select * from INFORMATION_SCHEMA.KEY_COLUMN_USAGE where T ABLE_NAME = 'airports' AND CONSTRAINT_SCHEMA = 'flights';
+```
+
+Note : Sequelize can provide all the crud methods without even writing by ourselves
+
+```
+const { Airport, City } = require("./models");
+  const banglore = await City.findByPk(1);
+  const airportBLR = await banglore.createAirport({
+    name: "Kempegodwa Airport",
+    code: "BLR",
+  });
+  console.log(banglore);
+  console.log(airportBLR);
+```
+
+if we have model like Airport just require it and that model object can be use camel case
+createAirport()
+getAirport()
+removeAirport()
+
+
+# Flights Model 
+```
+npx sequelize model:generate --name Flight --attributes flightNumber:string,airplaneId:integer,departureAirportId:integer,arrivalAirportId:integer,arrivalTime:date,departureTime:date,price:integer,boardingGate:string,totalSeats:integer
+```
+### Flight table after added fk constraints on airplaneId, departureAirportId and arrivalAirportId
+```
+mysql> desc flights;
++--------------------+--------------+------+-----+---------+----------------+
+| Field              | Type         | Null | Key | Default | Extra          |
++--------------------+--------------+------+-----+---------+----------------+
+| id                 | int          | NO   | PRI | NULL    | auto_increment |
+| flightNumber       | varchar(255) | NO   |     | NULL    |                |
+| airplaneId         | int          | NO   | MUL | NULL    |                |
+| departureAirportId | varchar(255) | NO   | MUL | NULL    |                |
+| arrivalAirportId   | varchar(255) | NO   | MUL | NULL    |                |
+| arrivalTime        | datetime     | NO   |     | NULL    |                |
+| departureTime      | datetime     | NO   |     | NULL    |                |
+| price              | int          | NO   |     | NULL    |                |
+| boardingGate       | varchar(255) | YES  |     | NULL    |                |
+| totalSeats         | int          | NO   |     | NULL    |                |
+| createdAt          | datetime     | NO   |     | NULL    |                |
+| updatedAt          | datetime     | NO   |     | NULL    |                |
++--------------------+--------------+------+-----+---------+----------------+
+```

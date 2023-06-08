@@ -12,11 +12,10 @@ module.exports = {
         field: "id",
       },
       onDelete: "cascade",
-      onUpdate: "cascade",
     });
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.removeConstraint("Airports", city_fkey_constraint);
+    await queryInterface.removeConstraint("Airports", "city_fkey_constraint");
   },
 };

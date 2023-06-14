@@ -136,3 +136,5 @@ mysql> desc flights;
 | updatedAt          | datetime     | NO   |     | NULL    |                |
 +--------------------+--------------+------+-----+---------+----------------+
 ```
+
+# Changes project directory name to Flight-Service

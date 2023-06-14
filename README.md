@@ -137,4 +137,4 @@ mysql> desc flights;
 +--------------------+--------------+------+-----+---------+----------------+
 ```
 
-# Changes project directory name to Flight-Service
+# Changed project directory name to Flight-Service
